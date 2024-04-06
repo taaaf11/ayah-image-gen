@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pasteboard/pasteboard.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import 'package:widgets_to_image/widgets_to_image.dart';
 import 'package:surah_name_ayah_image/ayah_card.dart';
 import 'package:surah_name_ayah_image/ayah_number_field.dart';
@@ -22,19 +23,19 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => CurrentSurah()),
-        ChangeNotifierProvider(create: (context) => AyahKeyNotifier()),
         ChangeNotifierProvider(create: (context) => CurrentAyah()),
-        ChangeNotifierProvider(create: (context) => FontsLoaded()),
+        ChangeNotifierProvider(create: (context) => AyahKeyNotifier()),
         ChangeNotifierProvider(create: (context) => CardDimensions()),
+        ChangeNotifierProvider(create: (context) => FontsLoaded()),
       ],
       child: MaterialApp(
-        title: 'Ayah Image Gen',
+        title: 'Ayah Image Generator',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
               seedColor: const Color(0xff16666f), brightness: Brightness.dark),
           useMaterial3: true,
         ),
-        home: const MyHomePage(title: 'Ayah Image Gen'),
+        home: const MyHomePage(title: 'Ayah Image Generator'),
       ),
     );
   }
@@ -53,20 +54,26 @@ class _MyHomePageState extends State<MyHomePage> {
   // WidgetsToImageController to access widget
   final WidgetsToImageController _widgetsToImageController =
       WidgetsToImageController();
-// to save image bytes of widget
   Uint8List? bytes;
-  int hello = 2;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        // backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.code),
+            onPressed: () {
+              launchUrlString('https://github.com/taaaf11/ayah-image-gen');
+            },
+          )
+        ],
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          // mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

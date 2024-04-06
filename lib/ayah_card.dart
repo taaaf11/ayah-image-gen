@@ -21,8 +21,8 @@ class AyahCard extends StatelessWidget {
                 // maxHeight: cardDimsState.height,
               ),
               child: Column(
-                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+                  const SizedBox(height: 10),
                   SurahNameBox(surahNumber: ayahKey.surahNumber),
                   const SizedBox(height: 20),
                   Container(
