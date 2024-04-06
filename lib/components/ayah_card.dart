@@ -15,10 +15,13 @@ class AyahCard extends StatelessWidget {
       builder: ((BuildContext context, AyahKeyNotifier ayahKey, child) {
         if ((ayahKey.surahNumber != null && ayahKey.ayahNumber != null)) {
           return Card(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.zero,
+            ),
+            shadowColor: Colors.transparent,
             child: ConstrainedBox(
               constraints: BoxConstraints(
                 maxWidth: cardDimsState.width,
-                // maxHeight: cardDimsState.height,
               ),
               child: Column(
                 children: [

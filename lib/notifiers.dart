@@ -49,30 +49,14 @@ class FontsLoaded with ChangeNotifier {
 
 class CardDimensions extends ChangeNotifier {
   double _width = 400;
-  double _height = 200;
-
-  void incHeight() {
-    _height += 1;
-    notifyListeners();
-  }
-
-  void decHeight() {
-    _height -= 1;
-    notifyListeners();
-  }
 
   void incWidth() {
-    _width += 1;
+    _width += 5;
     notifyListeners();
   }
 
   void decWidth() {
-    _width -= 1;
-    notifyListeners();
-  }
-
-  void updateHeight(double height) {
-    _height = height;
+    _width -= 5;
     notifyListeners();
   }
 
@@ -82,5 +66,4 @@ class CardDimensions extends ChangeNotifier {
   }
 
   double get width => _width;
-  double get height => _height;
 }

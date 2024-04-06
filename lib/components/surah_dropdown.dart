@@ -23,7 +23,7 @@ class SurahDropdown extends StatelessWidget {
       onSelected: (value) {
         currentSurah.change(value);
         if (currentAyah.ayahNumber != null) {
-          stateAyahKey.update(value, currentAyah.ayahNumber!);
+          stateAyahKey.update(value, currentAyah.ayahNumber);
         }
       },
     );

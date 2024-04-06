@@ -33,6 +33,14 @@ flutter:
     - assets/
 
   fonts:
+    - family: Comfortaa
+      fonts:
+        - asset: fonts/Comfortaa-Regular.ttf
+
+    - family: Symbols-NF
+      fonts:
+        - asset: fonts/SymbolsNerdFont-Regular.ttf
+
     - family: SurahNamesFont
       fonts:
         - asset: fonts/QCF_BSML.ttf

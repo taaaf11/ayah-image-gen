@@ -27,18 +27,10 @@ class _AyahNumberFieldState extends State<AyahNumberField> {
             int ayahNumber = int.parse(value);
             if (validateAyahNumber(currentSurah.surahNumber!, ayahNumber)) {
               currentAyah.change(ayahNumber);
-              stateAyahKey.update(currentSurah.surahNumber!, ayahNumber);
+              stateAyahKey.update(currentSurah.surahNumber, ayahNumber);
             }
           }
         },
-        // onSubmitted: (value) {
-        //   if (currentSurah.surahNumber != null) {
-        //     if (validateAyahNumber(
-        //         currentSurah.surahNumber!, int.parse(value))) {
-        //       currentAyah.change(int.parse(value));
-        //     }
-        //   }
-        // },
       ),
     );
   }

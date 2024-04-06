@@ -34,6 +34,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(
               seedColor: const Color(0xff16666f), brightness: Brightness.dark),
           useMaterial3: true,
+          fontFamily: 'Comfortaa',
         ),
         home: const MyHomePage(title: 'Ayah Image Generator'),
       ),
@@ -63,8 +64,8 @@ class _MyHomePageState extends State<MyHomePage> {
         // backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.code),
+          TextButton(
+            child: const Text('󰊤', style: TextStyle(fontFamily: 'Symbols-NF')),
             onPressed: () {
               launchUrlString('https://github.com/taaaf11/ayah-image-gen');
             },
@@ -79,8 +80,12 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
+                const Text('Surah:'),
+                const SizedBox(width: 10),
                 const SurahDropdown(),
                 const SizedBox(width: 20),
+                const Text('Ayah:'),
+                const SizedBox(width: 10),
                 const AyahNumberField(),
                 const SizedBox(width: 20),
                 const WidthControl(),

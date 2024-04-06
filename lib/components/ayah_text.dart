@@ -22,8 +22,9 @@ class AyahText extends StatefulWidget {
 class _AyahTextState extends State<AyahText> {
   late FontsLoaded _fontsLoaded;
   String _textFamily = '';
+  List<int> _loadedFonts = [];
   // ignore: prefer_final_fields
-  Map<String, String> _loadedAyahs = {};
+  Map<String, List<String>> _loadedAyahs = {};
 
   @override
   void initState() {
@@ -37,18 +38,20 @@ class _AyahTextState extends State<AyahText> {
     var response = await http.get(uri);
 
     var responseJson = jsonDecode(response.body);
-    await _getFont(responseJson['verses'][0]['v1_page']);
 
     String verseKey = responseJson['verses'][0]['verse_key'];
     String ayahText = responseJson['verses'][0]['code_v1'];
+    int pageNumber = responseJson['verses'][0]['v1_page'];
 
-    _loadedAyahs[verseKey] = ayahText;
+    await _getFont(pageNumber);
+
+    _loadedAyahs[verseKey] = [ayahText, pageNumber.toString()];
 
     return ayahText;
   }
 
   Future<void> _getFont(int pageNumber) async {
-    if (!_fontsLoaded.isFontLoaded(pageNumber)) {
+    if (!_loadedFonts.contains(pageNumber)) {
       var fontLoader = FontLoader(pageNumber.toString());
       fontLoader.addFont(fetchFontBytes(pageNumber));
       await fontLoader.load();
@@ -65,10 +68,11 @@ class _AyahTextState extends State<AyahText> {
         textDirection: TextDirection.rtl,
         alignment: WrapAlignment.center,
         children: [
-          for (final textChar in _loadedAyahs[ayahKey].toString().split(''))
+          for (final textChar in _loadedAyahs[ayahKey]![0].split(''))
             Text(
               textChar,
-              style: TextStyle(fontFamily: _textFamily, fontSize: 30),
+              style: TextStyle(
+                  fontFamily: _loadedAyahs[ayahKey]?[1], fontSize: 30),
             )
         ],
       );
@@ -78,7 +82,7 @@ class _AyahTextState extends State<AyahText> {
         builder: ((context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
-              return const Text('loading');
+              return const CircularProgressIndicator();
             default:
               if (snapshot.hasError) {
                 return Text(snapshot.error.toString());
