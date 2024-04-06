@@ -14,7 +14,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Ayah Image Gen',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color(0xff16666f), brightness: Brightness.dark),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Ayah Image Gen'),
@@ -58,9 +59,10 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            SurahNameBox(
-              surahNumber: 2,
-            )
+            // InteractionBox()
+            // SurahNameBox(
+            //   surahNumber: 2,
+            // )
           ],
         ),
       ),
