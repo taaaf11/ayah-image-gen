@@ -4,11 +4,11 @@ import 'package:pasteboard/pasteboard.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:widgets_to_image/widgets_to_image.dart';
-import 'package:surah_name_ayah_image/ayah_card.dart';
-import 'package:surah_name_ayah_image/ayah_number_field.dart';
-import 'package:surah_name_ayah_image/card_dims_controls.dart';
+import 'package:surah_name_ayah_image/components/ayah_card.dart';
+import 'package:surah_name_ayah_image/components/ayah_number_field.dart';
+import 'package:surah_name_ayah_image/components/card_dims_controls.dart';
 import 'package:surah_name_ayah_image/notifiers.dart';
-import 'package:surah_name_ayah_image/surah_dropdown.dart';
+import 'package:surah_name_ayah_image/components/surah_dropdown.dart';
 
 void main() {
   runApp(const MyApp());

@@ -5,8 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 
-import 'notifiers.dart';
-import 'utils.dart';
+import '../notifiers.dart';
+import '../utils.dart';
 
 class AyahText extends StatefulWidget {
   final int surahNumber;

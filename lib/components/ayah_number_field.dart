@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:surah_name_ayah_image/utils.dart';
 
-import 'notifiers.dart';
+import '../notifiers.dart';
 
 class AyahNumberField extends StatefulWidget {
   const AyahNumberField({super.key});

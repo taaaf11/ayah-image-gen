@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:surah_name_ayah_image/ayah_text.dart';
+import 'package:surah_name_ayah_image/components/ayah_text.dart';
 import 'package:surah_name_ayah_image/notifiers.dart';
-import 'package:surah_name_ayah_image/surah_name_box.dart';
+import 'package:surah_name_ayah_image/components/surah_name_box.dart';
 
 class AyahCard extends StatelessWidget {
   const AyahCard({super.key});

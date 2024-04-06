@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'notifiers.dart';
-import 'surah_names.dart';
+import '../notifiers.dart';
+import '../surah_names.dart';
 
 // ignore: must_be_immutable
 class SurahNameBox extends StatefulWidget {
@@ -33,7 +33,7 @@ class _SurahNameBoxState extends State<SurahNameBox> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SvgPicture.asset(
-            'moon.svg',
+            'assets/moon.svg',
             colorFilter: ColorFilter.mode(
               Theme.of(context).colorScheme.onSurface,
               BlendMode.srcIn,
@@ -45,7 +45,7 @@ class _SurahNameBoxState extends State<SurahNameBox> {
               style:
                   const TextStyle(fontFamily: 'SurahNamesFont', fontSize: 30)),
           SvgPicture.asset(
-            'moon.svg',
+            'assets/moon.svg',
             colorFilter: ColorFilter.mode(
               Theme.of(context).colorScheme.onSurface,
               BlendMode.srcIn,
