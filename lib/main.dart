@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:pasteboard/pasteboard.dart';
 import 'package:provider/provider.dart';
+import 'package:widgets_to_image/widgets_to_image.dart';
 import 'package:surah_name_ayah_image/ayah_card.dart';
 import 'package:surah_name_ayah_image/ayah_number_field.dart';
 import 'package:surah_name_ayah_image/card_dims_controls.dart';
@@ -47,6 +50,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  // WidgetsToImageController to access widget
+  final WidgetsToImageController _widgetsToImageController =
+      WidgetsToImageController();
+// to save image bytes of widget
+  Uint8List? bytes;
+  int hello = 2;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: const Center(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -62,15 +72,25 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
-                SurahDropdown(),
-                SizedBox(width: 20),
-                AyahNumberField(),
-                SizedBox(width: 20),
-                WidthControl(),
+                const SurahDropdown(),
+                const SizedBox(width: 20),
+                const AyahNumberField(),
+                const SizedBox(width: 20),
+                const WidthControl(),
+                IconButton(
+                  icon: const Icon(Icons.copy),
+                  tooltip: 'Copy image',
+                  onPressed: () async {
+                    bytes = await _widgetsToImageController.capture();
+
+                    Pasteboard.writeImage(bytes);
+                  },
+                )
                 // HeightControl()
               ],
             ),
-            AyahCard()
+            WidgetsToImage(
+                controller: _widgetsToImageController, child: const AyahCard())
           ],
         ),
       ),

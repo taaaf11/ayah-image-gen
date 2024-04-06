@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'notifiers.dart';
 import 'surah_names.dart';
 
+// ignore: must_be_immutable
 class SurahNameBox extends StatefulWidget {
   int? surahNumber;
 
