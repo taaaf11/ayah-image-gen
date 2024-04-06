@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:surah_name_ayah_image/ayah_number_field.dart';
-import 'package:surah_name_ayah_image/surah_dropdown.dart';
-import 'package:surah_name_ayah_image/surah_name_box.dart';
+import 'package:provider/provider.dart';
+import 'package:surah_name_ayah_image/notifiers.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,14 +12,21 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Ayah Image Gen',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color(0xff16666f), brightness: Brightness.dark),
-        useMaterial3: true,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => CurrentSurah()),
+        // ChangeNotifierProvider(create: (context) => AyahKey()),
+        ChangeNotifierProvider(create: (context) => CurrentAyah())
+      ],
+      child: MaterialApp(
+        title: 'Ayah Image Gen',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(
+              seedColor: const Color(0xff16666f), brightness: Brightness.dark),
+          useMaterial3: true,
+        ),
+        home: const MyHomePage(title: 'Ayah Image Gen'),
       ),
-      home: const MyHomePage(title: 'Ayah Image Gen'),
     );
   }
 }
@@ -61,9 +67,8 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            SurahDropdown(),
-            AyahNumberField()
-            // InteractionBox()
+            // const SurahDropdown(),
+            // const AyahNumberField()
             // SurahNameBox(
             //   surahNumber: 2,
             // )
