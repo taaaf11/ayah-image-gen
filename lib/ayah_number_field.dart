@@ -16,6 +16,7 @@ class _AyahNumberFieldState extends State<AyahNumberField> {
   Widget build(BuildContext context) {
     var currentSurah = Provider.of<CurrentSurah>(context);
     var currentAyah = Provider.of<CurrentAyah>(context);
+    var stateAyahKey = Provider.of<AyahKeyNotifier>(context);
 
     return SizedBox(
       width: 100,
@@ -23,20 +24,21 @@ class _AyahNumberFieldState extends State<AyahNumberField> {
         decoration: const InputDecoration(border: OutlineInputBorder()),
         onChanged: (String value) {
           if (currentSurah.surahNumber != null) {
-            if (validateAyahNumber(
-                currentSurah.surahNumber!, int.parse(value))) {
-              currentAyah.change(int.parse(value));
+            int ayahNumber = int.parse(value);
+            if (validateAyahNumber(currentSurah.surahNumber!, ayahNumber)) {
+              currentAyah.change(ayahNumber);
+              stateAyahKey.update(currentSurah.surahNumber!, ayahNumber);
             }
           }
         },
-        onSubmitted: (value) {
-          if (currentSurah.surahNumber != null) {
-            if (validateAyahNumber(
-                currentSurah.surahNumber!, int.parse(value))) {
-              currentAyah.change(int.parse(value));
-            }
-          }
-        },
+        // onSubmitted: (value) {
+        //   if (currentSurah.surahNumber != null) {
+        //     if (validateAyahNumber(
+        //         currentSurah.surahNumber!, int.parse(value))) {
+        //       currentAyah.change(int.parse(value));
+        //     }
+        //   }
+        // },
       ),
     );
   }

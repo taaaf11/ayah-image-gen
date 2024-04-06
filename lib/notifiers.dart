@@ -11,18 +11,19 @@ class CurrentSurah extends ChangeNotifier {
   int? get surahNumber => _surahNumber;
 }
 
-// class AyahKey extends ChangeNotifier {
-//   int? _surahNumber;
-//   int? _ayahNumber;
+class AyahKeyNotifier extends ChangeNotifier {
+  int? _surahNumber;
+  int? _ayahNumber;
 
-//   void update(int surahNumber, int ayahNumber) {
-//     _surahNumber = surahNumber;
-//     _ayahNumber = ayahNumber;
-//   }
+  void update(int? surahNumber, int? ayahNumber) {
+    _surahNumber = surahNumber;
+    _ayahNumber = ayahNumber;
+    notifyListeners();
+  }
 
-//   int? get surahNumber => _surahNumber;
-//   int? get ayahNumber => _ayahNumber;
-// }
+  int? get surahNumber => _surahNumber;
+  int? get ayahNumber => _ayahNumber;
+}
 
 class CurrentAyah extends ChangeNotifier {
   int? _ayahNumber;
@@ -33,4 +34,53 @@ class CurrentAyah extends ChangeNotifier {
   }
 
   int? get ayahNumber => _ayahNumber;
+}
+
+class FontsLoaded with ChangeNotifier {
+  List<int> _fontsLoaded = [];
+
+  void add(int pageNumber) {
+    _fontsLoaded.add(pageNumber);
+    _fontsLoaded = _fontsLoaded.toSet().toList();
+  }
+
+  bool isFontLoaded(int pageNumber) => _fontsLoaded.contains(pageNumber);
+}
+
+class CardDimensions extends ChangeNotifier {
+  double _width = 400;
+  double _height = 200;
+
+  void incHeight() {
+    _height += 1;
+    notifyListeners();
+  }
+
+  void decHeight() {
+    _height -= 1;
+    notifyListeners();
+  }
+
+  void incWidth() {
+    _width += 1;
+    notifyListeners();
+  }
+
+  void decWidth() {
+    _width -= 1;
+    notifyListeners();
+  }
+
+  void updateHeight(double height) {
+    _height = height;
+    notifyListeners();
+  }
+
+  void updateWidth(double width) {
+    _width = width;
+    notifyListeners();
+  }
+
+  double get width => _width;
+  double get height => _height;
 }

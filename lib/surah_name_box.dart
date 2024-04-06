@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import 'notifiers.dart';
 import 'surah_names.dart';
 
 class SurahNameBox extends StatefulWidget {
@@ -14,15 +16,18 @@ class SurahNameBox extends StatefulWidget {
 class _SurahNameBoxState extends State<SurahNameBox> {
   @override
   Widget build(BuildContext context) {
+    var cardDimsState = Provider.of<CardDimensions>(context);
+
     return Container(
       alignment: Alignment.center,
       padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+      width: cardDimsState.width - 40,
+      // height: double.infinity,
       decoration: BoxDecoration(
         border: Border.all(
           color: Theme.of(context).colorScheme.onSurface,
         ),
       ),
-      width: MediaQuery.of(context).size.width / 4,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

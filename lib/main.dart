@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:surah_name_ayah_image/ayah_card.dart';
+import 'package:surah_name_ayah_image/ayah_number_field.dart';
+import 'package:surah_name_ayah_image/card_dims_controls.dart';
 import 'package:surah_name_ayah_image/notifiers.dart';
+import 'package:surah_name_ayah_image/surah_dropdown.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,8 +19,10 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => CurrentSurah()),
-        // ChangeNotifierProvider(create: (context) => AyahKey()),
-        ChangeNotifierProvider(create: (context) => CurrentAyah())
+        ChangeNotifierProvider(create: (context) => AyahKeyNotifier()),
+        ChangeNotifierProvider(create: (context) => CurrentAyah()),
+        ChangeNotifierProvider(create: (context) => FontsLoaded()),
+        ChangeNotifierProvider(create: (context) => CardDimensions()),
       ],
       child: MaterialApp(
         title: 'Ayah Image Gen',
@@ -41,14 +47,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,30 +54,26 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Center(
+      body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SurahDropdown(),
+                SizedBox(width: 20),
+                AyahNumberField(),
+                SizedBox(width: 20),
+                WidthControl(),
+                // HeightControl()
+              ],
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            // const SurahDropdown(),
-            // const AyahNumberField()
-            // SurahNameBox(
-            //   surahNumber: 2,
-            // )
+            AyahCard()
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

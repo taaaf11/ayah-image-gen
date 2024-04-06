@@ -9,6 +9,8 @@ class SurahDropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var currentSurah = Provider.of<CurrentSurah>(context);
+    var currentAyah = Provider.of<CurrentAyah>(context);
+    var stateAyahKey = Provider.of<AyahKeyNotifier>(context);
 
     return DropdownMenu(
       dropdownMenuEntries: [
@@ -20,6 +22,9 @@ class SurahDropdown extends StatelessWidget {
       ],
       onSelected: (value) {
         currentSurah.change(value);
+        if (currentAyah.ayahNumber != null) {
+          stateAyahKey.update(value, currentAyah.ayahNumber!);
+        }
       },
     );
   }
