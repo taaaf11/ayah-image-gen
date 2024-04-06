@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:surah_name_ayah_image/surah_dropdown.dart';
 import 'package:surah_name_ayah_image/surah_name_box.dart';
 
 void main() {
@@ -59,6 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            SurahDropdown()
             // InteractionBox()
             // SurahNameBox(
             //   surahNumber: 2,
